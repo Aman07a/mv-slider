@@ -36,6 +36,14 @@ if (!class_exists('MV_Slider')) {
     {
         function __construct()
         {
+            $this->define_constants();
+        }
+
+        public function define_constants()
+        {
+            define('MV_SLIDER_PATH', plugin_dir_path(__FILE__));
+            define('MV_SLIDER_URL', plugin_dir_url(__FILE__));
+            define('MV_SLIDER_VERSION', '1.0.0');
         }
     }
 }
