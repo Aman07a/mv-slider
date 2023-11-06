@@ -30,3 +30,16 @@ along with MV Slider. If not, see https://www.gnu.org/licenses/gpl-2.0.html.
 if (!defined('ABSPATH')) {
     exit;
 }
+
+if (!class_exists('MV_Slider')) {
+    class MV_Slider
+    {
+        function __construct()
+        {
+        }
+    }
+}
+
+if (!class_exists('MV_Slider')) {
+    $mv_slider = new MV_Slider();
+}
