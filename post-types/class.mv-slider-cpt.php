@@ -6,6 +6,7 @@ if (!class_exists('MV_Slider_Post_Type')) {
         function __construct()
         {
             add_action('init', [$this, 'create_post_type']);
+            add_action('add_meta_boxes', [$this, 'add_meta_boxes']);
         }
 
         public function create_post_type()
@@ -31,7 +32,24 @@ if (!class_exists('MV_Slider_Post_Type')) {
                 'publicly_queryable' => true,
                 'show_in_rest' => true,
                 'menu_icon' => 'dashicons-images-alt2',
+                // 'register_meta_box_cb' => [$this, 'add_meta_boxes'],
             ]);
+        }
+
+        public function add_meta_boxes()
+        {
+            add_meta_box(
+                'mv_slider_meta_box',
+                'Link Options',
+                [$this, 'add_inner_meta_boxes'],
+                'mv-slider',
+                'normal',
+                'high',
+            );
+        }
+
+        public function add_inner_meta_boxes($post)
+        {
         }
     }
 }
