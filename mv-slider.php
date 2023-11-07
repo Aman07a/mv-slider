@@ -38,6 +38,8 @@ if (!class_exists('MV_Slider')) {
         {
             $this->define_constants();
 
+            add_action('admin_menu', [$this, 'add_menu']);
+
             require_once(MV_SLIDER_PATH . 'post-types/class.mv-slider-cpt.php');
             $MV_Slider_Post_Type = new MV_Slider_Post_Type();
         }
@@ -62,6 +64,23 @@ if (!class_exists('MV_Slider')) {
 
         public static function uninstall()
         {
+        }
+
+        public function add_menu()
+        {
+            add_menu_page(
+                'MV Slider Options',
+                'MV Slider',
+                'manage_options',
+                'mv_slider_admin',
+                [$this, 'mv_slider_settings_page'],
+                'dashicons-images-alt2'
+            );
+        }
+
+        public function mv_slider_settings_page()
+        {
+            echo "This is a test page";
         }
     }
 }
