@@ -28,7 +28,7 @@ along with MV Slider. If not, see https://www.gnu.org/licenses/gpl-2.0.html.
 */
 
 if (!defined('ABSPATH')) {
-    exit;
+    exit();
 }
 
 if (!class_exists('MV_Slider')) {
@@ -67,9 +67,9 @@ if (!class_exists('MV_Slider')) {
 }
 
 if (class_exists('MV_Slider')) {
-    register_activation_hook(__FILE__, array('MV_Slider', 'activate'));
-    register_deactivation_hook(__FILE__, array('MV_Slider', 'deactivate'));
-    register_uninstall_hook(__FILE__, array('MV_Slider', 'uninstall'));
+    register_activation_hook(__FILE__, ['MV_Slider', 'activate']);
+    register_deactivation_hook(__FILE__, ['MV_Slider', 'deactivate']);
+    register_uninstall_hook(__FILE__, ['MV_Slider', 'uninstall']);
 
     $mv_slider = new MV_Slider();
 }
