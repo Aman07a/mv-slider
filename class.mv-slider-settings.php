@@ -148,7 +148,8 @@ if (!class_exists('MV_Slider_Settings')) {
                             add_settings_error(
                                 'mv_slider_options',
                                 'mv_slider_message',
-                                'The title field can not be left empty', 'error'
+                                'The title field can not be left empty',
+                                'error'
                             );
                             $value = 'Please, type some text';
                         }
