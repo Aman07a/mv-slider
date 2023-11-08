@@ -15,29 +15,32 @@ if (!class_exists('MV_Slider_Post_Type')) {
 
         public function create_post_type()
         {
-            register_post_type('mv-slider', [
-                'label' => 'Slider',
-                'description' => 'Sliders',
-                'labels' => [
-                    'name' => 'Sliders',
-                    'singular_name' => 'Slider',
-                ],
-                'public' => true,
-                'supports' => ['title', 'editor', 'thumbnail'],
-                'hierarchical' => false,
-                'show_ui' => true,
-                'show_in_menu' => false,
-                'menu_position' => 5,
-                'show_in_admin_bar' => true,
-                'show_in_nav_menus' => true,
-                'can_export' => true,
-                'has_archive' => false,
-                'exclude_from_search' => false,
-                'publicly_queryable' => true,
-                'show_in_rest' => true,
-                'menu_icon' => 'dashicons-images-alt2',
-                // 'register_meta_box_cb' => [$this, 'add_meta_boxes']
-            ]);
+            register_post_type(
+                'mv-slider',
+                [
+                    'label' => 'Slider',
+                    'description' => 'Sliders',
+                    'labels' => [
+                        'name' => 'Sliders',
+                        'singular_name' => 'Slider',
+                    ],
+                    'public' => true,
+                    'supports' => ['title', 'editor', 'thumbnail'],
+                    'hierarchical' => false,
+                    'show_ui' => true,
+                    'show_in_menu' => false,
+                    'menu_position' => 5,
+                    'show_in_admin_bar' => true,
+                    'show_in_nav_menus' => true,
+                    'can_export' => true,
+                    'has_archive' => false,
+                    'exclude_from_search' => false,
+                    'publicly_queryable' => true,
+                    'show_in_rest' => true,
+                    'menu_icon' => 'dashicons-images-alt2',
+                    // 'register_meta_box_cb'  =>  array( $this, 'add_meta_boxes' )
+                ]
+            );
         }
 
         public function mv_slider_cpt_columns($columns)
@@ -105,7 +108,7 @@ if (!class_exists('MV_Slider_Post_Type')) {
             }
 
             if (isset($_POST['action']) && $_POST['action'] == 'editpost') {
-                $old_link_text = get_post_meta($post_id, 'mv_slider_link_text');
+                $old_link_text = get_post_meta($post_id, 'mv_slider_link_text', true);
                 $new_link_text = $_POST['mv_slider_link_text'];
                 $old_link_url = get_post_meta($post_id, 'mv_slider_link_url', true);
                 $new_link_url = $_POST['mv_slider_link_url'];
