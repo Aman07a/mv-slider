@@ -13,6 +13,8 @@ if (!class_exists('MV_Slider_Settings')) {
 
         public function admin_init()
         {
+            register_setting('mv_slider_group', 'mv_slider_options');
+
             add_settings_section(
                 'mv_slider_main_section',
                 'How does it work?',

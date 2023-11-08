@@ -28,7 +28,7 @@ along with MV Slider. If not, see https://www.gnu.org/licenses/gpl-2.0.html.
 */
 
 if (!defined('ABSPATH')) {
-    exit;
+    exit();
 }
 
 if (!class_exists('MV_Slider')) {
