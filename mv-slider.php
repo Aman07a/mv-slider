@@ -11,7 +11,7 @@
  * License: GPL v2 or later
  * License URI: https://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain: mv-slider
- * Domain Path: /languages
+ * Domain Path: /languages.
  */
 
 /*
@@ -28,22 +28,22 @@ along with MV Slider. If not, see https://www.gnu.org/licenses/gpl-2.0.html.
 */
 
 if (!defined('ABSPATH')) {
-    exit();
+    exit;
 }
 
 if (!class_exists('MV_Slider')) {
     class MV_Slider
     {
-        function __construct()
+        public function __construct()
         {
             $this->define_constants();
 
             add_action('admin_menu', [$this, 'add_menu']);
 
-            require_once(MV_SLIDER_PATH . 'post-types/class.mv-slider-cpt.php');
+            require_once MV_SLIDER_PATH.'post-types/class.mv-slider-cpt.php';
             $MV_Slider_Post_Type = new MV_Slider_Post_Type();
 
-            require_once(MV_SLIDER_PATH . 'class.mv-slider-settings.php');
+            require_once MV_SLIDER_PATH.'class.mv-slider-settings.php';
             $MV_Slider_Settings = new MV_Slider_Settings();
         }
 
@@ -103,7 +103,7 @@ if (!class_exists('MV_Slider')) {
 
         public function mv_slider_settings_page()
         {
-            require(MV_SLIDER_PATH . 'views/settings-page.php');
+            require MV_SLIDER_PATH.'views/settings-page.php';
         }
     }
 }

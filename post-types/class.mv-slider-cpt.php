@@ -3,7 +3,7 @@
 if (!class_exists('MV_Slider_Post_Type')) {
     class MV_Slider_Post_Type
     {
-        function __construct()
+        public function __construct()
         {
             add_action('init', [$this, 'create_post_type']);
             add_action('add_meta_boxes', [$this, 'add_meta_boxes']);
@@ -20,7 +20,7 @@ if (!class_exists('MV_Slider_Post_Type')) {
                 'description' => 'Sliders',
                 'labels' => [
                     'name' => 'Sliders',
-                    'singular_name' => 'Slider'
+                    'singular_name' => 'Slider',
                 ],
                 'public' => true,
                 'supports' => ['title', 'editor', 'thumbnail'],
@@ -44,6 +44,7 @@ if (!class_exists('MV_Slider_Post_Type')) {
         {
             $columns['mv_slider_link_text'] = esc_html__('Link Text', 'mv-slider');
             $columns['mv_slider_link_url'] = esc_html__('Link URL', 'mv-slider');
+
             return $columns;
         }
 
@@ -62,6 +63,7 @@ if (!class_exists('MV_Slider_Post_Type')) {
         public function mv_slider_sortable_columns($columns)
         {
             $columns['mv_slider_link_text'] = 'mv_slider_link_text';
+
             return $columns;
         }
 
@@ -79,7 +81,7 @@ if (!class_exists('MV_Slider_Post_Type')) {
 
         public function add_inner_meta_boxes($post)
         {
-            require_once(MV_SLIDER_PATH . 'views/mv-slider_metabox.php');
+            require_once MV_SLIDER_PATH.'views/mv-slider_metabox.php';
         }
 
         public function save_post($post_id)
@@ -103,7 +105,7 @@ if (!class_exists('MV_Slider_Post_Type')) {
             }
 
             if (isset($_POST['action']) && $_POST['action'] == 'editpost') {
-                $old_link_text = get_post_meta($post_id, 'mv_slider_link_text',);
+                $old_link_text = get_post_meta($post_id, 'mv_slider_link_text');
                 $new_link_text = $_POST['mv_slider_link_text'];
                 $old_link_url = get_post_meta($post_id, 'mv_slider_link_url', true);
                 $new_link_url = $_POST['mv_slider_link_url'];

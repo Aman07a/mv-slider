@@ -13,7 +13,11 @@ if (!class_exists('MV_Slider_Settings')) {
 
         public function admin_init()
         {
-            register_setting('mv_slider_group', 'mv_slider_options');
+            register_setting(
+                'mv_slider_group',
+                'mv_slider_options',
+                [$this, 'mv_slider_validate']
+            );
 
             add_settings_section(
                 'mv_slider_main_section',
@@ -86,10 +90,10 @@ if (!class_exists('MV_Slider_Settings')) {
         {
             ?>
                 <input 
-                type='text' 
-                name='mv_slider_options[mv_slider_title]' 
-                id='mv_slider_title'
-                value='<?php echo isset(self::$options['mv_slider_title']) ? esc_attr(self::$options['mv_slider_title']) : ''; ?>'
+                    type='text' 
+                    name='mv_slider_options[mv_slider_title]' 
+                    id='mv_slider_title'
+                    value='<?php echo isset(self::$options['mv_slider_title']) ? esc_attr(self::$options['mv_slider_title']) : ''; ?>'
                 >
             <?php
         }
@@ -132,6 +136,26 @@ if (!class_exists('MV_Slider_Settings')) {
                 <?php } ?>
             </select>
             <?php
+        }
+
+        public function mv_slider_validate($input)
+        {
+            $new_input = [];
+            foreach ($input as $key => $value) {
+                switch ($key) {
+                    case 'mv_slider_title':
+                        if (empty($value)) {
+                            $value = 'Please, type some text';
+                        }
+                        $new_input[$key] = sanitize_text_field($value);
+                        break;
+                    default:
+                        $new_input[$key] = sanitize_text_field($value);
+                        break;
+                }
+            }
+
+            return $new_input;
         }
     }
 }
