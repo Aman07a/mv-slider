@@ -1,7 +1,7 @@
 <h3>
     <?php echo !empty($content)
-    ? esc_html($content)
-    : esc_html(MV_Slider_Settings::$options['mv_slider_title']); ?>
+        ? esc_html($content)
+        : esc_html(MV_Slider_Settings::$options['mv_slider_title']); ?>
 </h3>
 <div class="mv-slider flexslider <?php echo isset(
     MV_Slider_Settings::$options['mv_slider_style']
@@ -10,12 +10,12 @@
     : 'style-1'; ?>">
     <ul class="slides">
         <?php
-    $args = [
-        'post_type' => 'mv-slider',
-        'post_status' => 'publish',
-        'post__in' => $id,
-        'orderby' => $orderby,
-    ];
+        $args = [
+            'post_type' => 'mv-slider',
+            'post_status' => 'publish',
+            'post__in' => $id,
+            'orderby' => $orderby,
+        ];
 
     $my_query = new WP_Query($args);
 
@@ -38,9 +38,7 @@
             <?php if (has_post_thumbnail()) {
                 the_post_thumbnail('full', ['class' => 'img-fluid']);
             } else {
-                echo "<img src='".
-                    MV_SLIDER_URL.
-                    "assets/images/default.jpg' class='img-fluid wp-post-image' />";
+                echo mv_slider_get_placeholder_image();
             } ?>
             <div class="mvs-container">
                 <div class="slider-details-container">

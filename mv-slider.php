@@ -38,6 +38,8 @@ if (!class_exists('MV_Slider')) {
         {
             $this->define_constants();
 
+            require_once MV_SLIDER_PATH.'functions/functions.php';
+
             add_action('admin_menu', [$this, 'add_menu']);
 
             require_once MV_SLIDER_PATH.'post-types/class.mv-slider-cpt.php';
@@ -132,13 +134,6 @@ if (!class_exists('MV_Slider')) {
             wp_register_script(
                 'mv-slider-main-jq',
                 MV_SLIDER_URL.'vendor/flexslider/jquery.flexslider-min.js',
-                ['jquery'],
-                MV_SLIDER_VERSION,
-                true
-            );
-            wp_register_script(
-                'mv-slider-options-js',
-                MV_SLIDER_URL.'vendor/flexslider/flexslider.js',
                 ['jquery'],
                 MV_SLIDER_VERSION,
                 true
