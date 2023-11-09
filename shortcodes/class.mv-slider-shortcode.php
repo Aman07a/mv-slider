@@ -12,14 +12,16 @@ if (!class_exists('MV_Slider_Shortcode')) {
         {
             $atts = array_change_key_case((array) $atts, CASE_LOWER);
 
-            extract(shortcode_atts(
-                [
-                    'id' => '',
-                    'orderby' => 'date',
-                ],
-                $atts,
-                $tag
-            ));
+            extract(
+                shortcode_atts(
+                    [
+                        'id' => '',
+                        'orderby' => 'date',
+                    ],
+                    $atts,
+                    $tag
+                )
+            );
 
             if (!empty($id)) {
                 $id = array_map('absint', explode(',', $id));
