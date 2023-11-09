@@ -29,9 +29,7 @@ if (!class_exists('MV_Slider_Shortcode')) {
 
             ob_start();
             ?>
-            <div class="mv-slider-wrapper" style="text-align: center;">
                 <?php require MV_SLIDER_PATH.'views/mv-slider_shortcode.php'; ?>
-            </div>
             <?php
 
             wp_enqueue_script('mv-slider-main-jq');
