@@ -21,21 +21,21 @@ if (!class_exists('MV_Slider_Settings')) {
 
             add_settings_section(
                 'mv_slider_main_section',
-                __('How does it work?', 'mv-slider'),
+                esc_html__('How does it work?', 'mv-slider'),
                 null,
                 'mv_slider_page1'
             );
 
             add_settings_section(
                 'mv_slider_second_section',
-                __('Other Plugin Options', 'mv-slider'),
+                esc_html__('Other Plugin Options', 'mv-slider'),
                 null,
                 'mv_slider_page2'
             );
 
             add_settings_field(
                 'mv_slider_shortcode',
-                __('Shortcode', 'mv-slider'),
+                esc_html__('Shortcode', 'mv-slider'),
                 [$this, 'mv_slider_shortcode_callback'],
                 'mv_slider_page1',
                 'mv_slider_main_section'
@@ -43,7 +43,7 @@ if (!class_exists('MV_Slider_Settings')) {
 
             add_settings_field(
                 'mv_slider_title',
-                __('Slider Title', 'mv-slider'),
+                esc_html__('Slider Title', 'mv-slider'),
                 [$this, 'mv_slider_title_callback'],
                 'mv_slider_page2',
                 'mv_slider_second_section',
@@ -54,7 +54,7 @@ if (!class_exists('MV_Slider_Settings')) {
 
             add_settings_field(
                 'mv_slider_bullets',
-                __('Display Bullets', 'mv-slider'),
+                esc_html__('Display Bullets', 'mv-slider'),
                 [$this, 'mv_slider_bullets_callback'],
                 'mv_slider_page2',
                 'mv_slider_second_section',
@@ -65,7 +65,7 @@ if (!class_exists('MV_Slider_Settings')) {
 
             add_settings_field(
                 'mv_slider_style',
-                __('Slider Style', 'mv-slider'),
+                esc_html__('Slider Style', 'mv-slider'),
                 [$this, 'mv_slider_style_callback'],
                 'mv_slider_page2',
                 'mv_slider_second_section',
@@ -83,7 +83,7 @@ if (!class_exists('MV_Slider_Settings')) {
         {
             ?>
             <span>
-                <?php _e('Use the shortcode [mv_slider] to display the slider in any page/post/widget', 'mv-slider'); ?>
+                <?php esc_html_e('Use the shortcode [mv_slider] to display the slider in any page/post/widget', 'mv-slider'); ?>
             </span>
             <?php
         }
@@ -115,7 +115,7 @@ if (!class_exists('MV_Slider_Settings')) {
             ?>
                 />
                 <label for="mv_slider_bullets">
-                    <?php _e('Whether to display bullets or not', 'mv-slider'); ?>
+                    <?php esc_html_e('Whether to display bullets or not', 'mv-slider'); ?>
                 </label>
                 
             <?php
@@ -154,10 +154,10 @@ if (!class_exists('MV_Slider_Settings')) {
                             add_settings_error(
                                 'mv_slider_options',
                                 'mv_slider_message',
-                                __('The title field can not be left empty', 'mv-slider'),
+                                esc_html__('The title field can not be left empty', 'mv-slider'),
                                 'error'
                             );
-                            $value = __('Please, type some text', 'mv-slider');
+                            $value = esc_html__('Please, type some text', 'mv-slider');
                         }
                         $new_input[$key] = sanitize_text_field($value);
                         break;

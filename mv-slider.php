@@ -91,7 +91,7 @@ if (!class_exists('MV_Slider')) {
         public function add_menu()
         {
             add_menu_page(
-                __('MV Slider Options', 'mv-slider'),
+                esc_html__('MV Slider Options', 'mv-slider'),
                 'MV Slider',
                 'manage_options',
                 'mv_slider_admin',
@@ -101,8 +101,8 @@ if (!class_exists('MV_Slider')) {
 
             add_submenu_page(
                 'mv_slider_admin',
-                __('Manage Slides', 'mv-slider'),
-                __('Manage Slides', 'mv-slider'),
+                esc_html__('Manage Slides', 'mv-slider'),
+                esc_html__('Manage Slides', 'mv-slider'),
                 'manage_options',
                 'edit.php?post_type=mv-slider',
                 null,
@@ -111,8 +111,8 @@ if (!class_exists('MV_Slider')) {
 
             add_submenu_page(
                 'mv_slider_admin',
-                __('Add New Slide', 'mv-slider'),
-                __('Add New Slide', 'mv-slider'),
+                esc_html__('Add New Slide', 'mv-slider'),
+                esc_html__('Add New Slide', 'mv-slider'),
                 'manage_options',
                 'post-new.php?post_type=mv-slider',
                 null,
@@ -130,7 +130,7 @@ if (!class_exists('MV_Slider')) {
                 add_settings_error(
                     'mv_slider_options',
                     'mv_slider_message',
-                    __('Settings Saved', 'mv-slider'),
+                    esc_html__('Settings Saved', 'mv-slider'),
                     'success'
                 );
             }
