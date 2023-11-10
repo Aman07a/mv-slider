@@ -77,48 +77,18 @@ if (!class_exists('MV_Slider')) {
 
         public static function uninstall()
         {
-            // Log the starting message
-            error_log('Starting uninstallation process');
-
-            // Delete options from the database
             delete_option('mv_slider_options');
 
-            // Delete custom post type entries
-            $posts = get_posts([
-                'post_type' => 'mv-slider',
-                'numberposts' => -1,
-                'post_status' => 'any',
-            ]);
+            $posts = get_posts(
+                [
+                    'post_type' => 'mv-slider',
+                    'number_posts' => -1,
+                    'post_status' => 'any',
+                ]
+            );
 
             foreach ($posts as $post) {
                 wp_delete_post($post->ID, true);
-            }
-
-            // Unregister the custom post type
-            unregister_post_type('mv-slider');
-
-            // Flush rewrite rules
-            flush_rewrite_rules();
-
-            // Log the completion of uninstall logic
-            error_log('Uninstallation logic completed');
-
-            // Remove the plugin directory
-            $plugin_dir = WP_PLUGIN_DIR.'/mv-slider'; // Adjust the path if needed
-            if (is_dir($plugin_dir)) {
-                // Remove all files in the directory
-                $files = glob($plugin_dir.'/*');
-                foreach ($files as $file) {
-                    if (is_file($file)) {
-                        unlink($file);
-                    }
-                }
-
-                // Remove the directory itself
-                rmdir($plugin_dir);
-
-                // Log the completion of directory removal
-                error_log('Directory removal completed');
             }
         }
 
