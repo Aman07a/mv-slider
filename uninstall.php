@@ -19,3 +19,18 @@ unregister_post_type('mv-slider');
 
 // Flush rewrite rules
 flush_rewrite_rules();
+
+// Remove the plugin directory
+$plugin_dir = WP_PLUGIN_DIR.'/mv-slider';
+if (is_dir($plugin_dir)) {
+    // Remove all files in the directory
+    $files = glob($plugin_dir.'/*');
+    foreach ($files as $file) {
+        if (is_file($file)) {
+            unlink($file);
+        }
+    }
+
+    // Remove the directory itself
+    rmdir($plugin_dir);
+}
