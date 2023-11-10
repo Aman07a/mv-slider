@@ -81,15 +81,19 @@ if (!class_exists('MV_Slider')) {
 
             $posts = get_posts(
                 [
-                    'post_type' => 'mv-slider',
-                    'number_posts' => -1,
-                    'post_status' => 'any',
-                ]
+                'post_type' => 'mv-slider',
+                'numberposts' => -1,
+                'post_status' => 'any',
+            ]
             );
 
             foreach ($posts as $post) {
                 wp_delete_post($post->ID, true);
             }
+
+            unregister_post_type('mv-slider');
+
+            flush_rewrite_rules();
         }
 
         public function load_textdomain()
