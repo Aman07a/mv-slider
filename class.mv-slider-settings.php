@@ -21,21 +21,21 @@ if (!class_exists('MV_Slider_Settings')) {
 
             add_settings_section(
                 'mv_slider_main_section',
-                'How does it work?',
+                __('How does it work?', 'mv-slider'),
                 null,
                 'mv_slider_page1'
             );
 
             add_settings_section(
                 'mv_slider_second_section',
-                'Other Plugin Options',
+                __('Other Plugin Options', 'mv-slider'),
                 null,
                 'mv_slider_page2'
             );
 
             add_settings_field(
                 'mv_slider_shortcode',
-                'Shortcode',
+                __('Shortcode', 'mv-slider'),
                 [$this, 'mv_slider_shortcode_callback'],
                 'mv_slider_page1',
                 'mv_slider_main_section'
@@ -43,7 +43,7 @@ if (!class_exists('MV_Slider_Settings')) {
 
             add_settings_field(
                 'mv_slider_title',
-                'Slider Title',
+                __('Slider Title', 'mv-slider'),
                 [$this, 'mv_slider_title_callback'],
                 'mv_slider_page2',
                 'mv_slider_second_section',
@@ -54,7 +54,7 @@ if (!class_exists('MV_Slider_Settings')) {
 
             add_settings_field(
                 'mv_slider_bullets',
-                'Display Bullets',
+                __('Display Bullets', 'mv-slider'),
                 [$this, 'mv_slider_bullets_callback'],
                 'mv_slider_page2',
                 'mv_slider_second_section',
@@ -65,7 +65,7 @@ if (!class_exists('MV_Slider_Settings')) {
 
             add_settings_field(
                 'mv_slider_style',
-                'Slider Style',
+                __('Slider Style', 'mv-slider'),
                 [$this, 'mv_slider_style_callback'],
                 'mv_slider_page2',
                 'mv_slider_second_section',
@@ -82,7 +82,9 @@ if (!class_exists('MV_Slider_Settings')) {
         public function mv_slider_shortcode_callback()
         {
             ?>
-            <span>Use the shortcode [mv_slider] to display the slider in any page/post/widget</span>
+            <span>
+                <?php _e('Use the shortcode [mv_slider] to display the slider in any page/post/widget', 'mv-slider'); ?>
+            </span>
             <?php
         }
 
@@ -90,10 +92,10 @@ if (!class_exists('MV_Slider_Settings')) {
         {
             ?>
                 <input 
-                    type='text' 
-                    name='mv_slider_options[mv_slider_title]' 
-                    id='mv_slider_title'
-                    value='<?php echo isset(self::$options['mv_slider_title']) ? esc_attr(self::$options['mv_slider_title']) : ''; ?>'
+                    type="text" 
+                    name="mv_slider_options[mv_slider_title]" 
+                    id="mv_slider_title"
+                    value="<?php echo isset(self::$options['mv_slider_title']) ? esc_attr(self::$options['mv_slider_title']) : ''; ?>"
                 >
             <?php
         }
@@ -102,17 +104,19 @@ if (!class_exists('MV_Slider_Settings')) {
         {
             ?>
                 <input 
-                    type='checkbox'
-                    name='mv_slider_options[mv_slider_bullets]'
-                    id='mv_slider_bullets'
-                    value='1'
+                    type="checkbox"
+                    name="mv_slider_options[mv_slider_bullets]"
+                    id="mv_slider_bullets"
+                    value="1"
                     <?php
                         if (isset(self::$options['mv_slider_bullets'])) {
                             checked('1', self::$options['mv_slider_bullets'], true);
                         }
             ?>
                 />
-                <label for='mv_slider_bullets'>Whether to display bullets or not</label>
+                <label for="mv_slider_bullets">
+                    <?php _e('Whether to display bullets or not', 'mv-slider'); ?>
+                </label>
                 
             <?php
         }
@@ -121,14 +125,16 @@ if (!class_exists('MV_Slider_Settings')) {
         {
             ?>
             <select 
-                id='mv_slider_style' 
-                name='mv_slider_options[mv_slider_style]'>
+                id="mv_slider_style" 
+                name="mv_slider_options[mv_slider_style]">
                 <?php
                 foreach ($args['items'] as $item) {
                     ?>
-                    <option value='<?php echo esc_attr($item); ?>' 
+                    <option value="<?php echo esc_attr($item); ?>" 
                         <?php
-                            isset(self::$options['mv_slider_style']) ? selected($item, self::$options['mv_slider_style'], true) : '';
+                            isset(self::$options['mv_slider_style'])
+                            ? selected($item, self::$options['mv_slider_style'], true)
+                            : '';
                     ?>
                     >
                         <?php echo esc_html(ucfirst($item)); ?>
@@ -148,10 +154,10 @@ if (!class_exists('MV_Slider_Settings')) {
                             add_settings_error(
                                 'mv_slider_options',
                                 'mv_slider_message',
-                                'The title field can not be left empty',
+                                __('The title field can not be left empty', 'mv-slider'),
                                 'error'
                             );
-                            $value = 'Please, type some text';
+                            $value = __('Please, type some text', 'mv-slider');
                         }
                         $new_input[$key] = sanitize_text_field($value);
                         break;

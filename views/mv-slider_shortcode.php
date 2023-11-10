@@ -1,21 +1,20 @@
 <h3>
-    <?php echo !empty($content)
-        ? esc_html($content)
-        : esc_html(MV_Slider_Settings::$options['mv_slider_title']); ?>
+    <?php echo (!empty($content))
+    ? esc_html($content)
+    : esc_html(MV_Slider_Settings::$options['mv_slider_title']); ?>
 </h3>
-<div class="mv-slider flexslider <?php echo isset(
-    MV_Slider_Settings::$options['mv_slider_style']
-)
+<div class="mv-slider flexslider <?php echo (isset(
+    MV_Slider_Settings::$options['mv_slider_style']))
     ? esc_attr(MV_Slider_Settings::$options['mv_slider_style'])
     : 'style-1'; ?>">
     <ul class="slides">
         <?php
-        $args = [
-            'post_type' => 'mv-slider',
-            'post_status' => 'publish',
-            'post__in' => $id,
-            'orderby' => $orderby,
-        ];
+    $args = [
+        'post_type' => 'mv-slider',
+        'post_status' => 'publish',
+        'post__in' => $id,
+        'orderby' => $orderby,
+    ];
 
     $my_query = new WP_Query($args);
 
@@ -35,11 +34,13 @@
             );
             ?>
         <li>
-            <?php if (has_post_thumbnail()) {
-                the_post_thumbnail('full', ['class' => 'img-fluid']);
-            } else {
-                echo mv_slider_get_placeholder_image();
-            } ?>
+            <?php
+                if (has_post_thumbnail()) {
+                    the_post_thumbnail('full', ['class' => 'img-fluid']);
+                } else {
+                    echo mv_slider_get_placeholder_image();
+                }
+            ?>
             <div class="mvs-container">
                 <div class="slider-details-container">
                     <div class="wrapper">
@@ -52,9 +53,7 @@
                             <div class="subtitle">
                                 <?php the_content(); ?>
                             </div>
-                            <a class="link" href="<?php echo esc_attr(
-                                $button_url
-                            ); ?>">
+                            <a class="link" href="<?php echo esc_attr($button_url); ?>">
                                 <?php echo esc_html($button_text); ?>
                             </a>
                         </div>
