@@ -77,23 +77,7 @@ if (!class_exists('MV_Slider')) {
 
         public static function uninstall()
         {
-            delete_option('mv_slider_options');
-
-            $posts = get_posts(
-                [
-                'post_type' => 'mv-slider',
-                'numberposts' => -1,
-                'post_status' => 'any',
-            ]
-            );
-
-            foreach ($posts as $post) {
-                wp_delete_post($post->ID, true);
-            }
-
-            unregister_post_type('mv-slider');
-
-            flush_rewrite_rules();
+            require_once MV_SLIDER_PATH.'uninstall.php';
         }
 
         public function load_textdomain()
